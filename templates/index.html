@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dijkstra con Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Algoritmo de Dijkstra</h1>
+    <form method="post">
+        <label>Nodos (ej: A,B,C,D):</label>
+        <input type="text" name="nodes" value="{{ nodes or '' }}" required>
+
+        <label>Aristas (ej: A,B,2;B,C,3;A,C,1):</label>
+        <input type="text" name="edges" value="{{ edges or '' }}" required>
+
+        <label>Origen:</label>
+        <input type="text" name="origen" value="{{ origen or '' }}" required>
+
+        <label>Destino:</label>
+        <input type="text" name="destino" value="{{ destino or '' }}" required>
+
+        <div class="button-group">
+            <button type="submit" name="action" value="calcular">Calcular</button>
+            <button type="submit" name="action" value="nuevo">Nuevo</button>
+        </div>
+    </form>
+
+    {% if result %}
+        <h2>{{ result }}</h2>
+        <div class="img-container">
+            <div>
+                <h3>Grafo original</h3>
+                <img src="{{ image_path_original }}" alt="Grafo original">
+            </div>
+            <div>
+                <h3>Ruta más corta</h3>
+                <img src="{{ image_path_solution }}" alt="Grafo con solución">
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>
